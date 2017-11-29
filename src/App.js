@@ -34,6 +34,18 @@ class App extends Component {
       }
     })
   }
+
+  onChangeProfileImageURL = (event) => {
+    const input = event.target
+    const newProfileImageURL = input.value.trim()
+    this.setState((prevState)=> {
+      const user = prevState.user
+      user.profileImageURL = newProfileImageURL
+      return {
+        user:user
+      }
+    })
+  }
   render() {
     const user = this.state.user
 
@@ -42,19 +54,27 @@ class App extends Component {
         <h1>Linked In Profile Editor</h1>       
         <img src={user.profileImageURL} alt=''/>
         <p>Name: {user.firstName} {user.lastName}</p>
-
+        
         <label>
           First Name:
           {''}
         <input value={user.firstName}
         onChange={this.onChangeLastName}/>
-        </label>
-
+        </label>       
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label>
           Last Name:
           {''}
         <input value={user.lastName}
         onChange={this.onChangeLastName}/>
+        </label>
+        <br/>
+        <br/> 
+        <label>
+          Image url:
+          {''}
+        <input value={user.profileImageURL}
+        onChange={this.onChangeProfileImageURL}/>
         </label>
       </div>
     );
