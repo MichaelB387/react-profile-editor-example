@@ -22,6 +22,18 @@ class App extends Component {
       }
     })
   }
+
+  onChangeLastName = (event) => {
+    const input = event.target
+    const newLastName = input.value.trim()
+    this.setState((prevState)=> {
+      const user = prevState.user
+      user.lastName = newLastName
+      return {
+        user:user
+      }
+    })
+  }
   render() {
     const user = this.state.user
 
@@ -32,10 +44,17 @@ class App extends Component {
         <p>Name: {user.firstName} {user.lastName}</p>
 
         <label>
-          Frist Name:
+          First Name:
           {''}
         <input value={user.firstName}
-        onChange={this.onChangeFirstName}/>
+        onChange={this.onChangeLastName}/>
+        </label>
+
+        <label>
+          Last Name:
+          {''}
+        <input value={user.lastName}
+        onChange={this.onChangeLastName}/>
         </label>
       </div>
     );
